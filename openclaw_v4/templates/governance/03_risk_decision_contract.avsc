@@ -1,0 +1,16 @@
+{
+  "type": "record",
+  "name": "RiskDecision",
+  "namespace": "openclaw.contracts",
+  "fields": [
+    {"name": "decision_id", "type": "string"},
+    {"name": "signal_id", "type": "string"},
+    {"name": "decision_status", "type": {"type": "enum", "name": "DecisionStatus", "symbols": ["APPROVED", "REJECTED", "EXPIRED"]}},
+    {"name": "approved_notional", "type": "double"},
+    {"name": "risk_rule_version", "type": "string"},
+    {"name": "issued_at", "type": "string"},
+    {"name": "expires_at", "type": "string"},
+    {"name": "reason_code", "type": ["null", "string"], "default": null},
+    {"name": "signature", "type": ["null", "string"], "default": null}
+  ]
+}

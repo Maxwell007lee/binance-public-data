@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FeatureSpec",
+  "type": "object",
+  "required": [
+    "feature_name",
+    "feature_version",
+    "entity_key",
+    "event_time_column",
+    "source_table",
+    "transformation_logic",
+    "owner",
+    "feature_hash"
+  ],
+  "properties": {
+    "feature_name": {"type": "string"},
+    "feature_version": {"type": "string"},
+    "entity_key": {"type": "string"},
+    "event_time_column": {"type": "string"},
+    "source_table": {"type": "string"},
+    "point_in_time_safe": {"type": "boolean"},
+    "transformation_logic": {"type": "string"},
+    "null_policy": {"type": "string"},
+    "outlier_policy": {"type": "string"},
+    "label_horizon": {"type": "string"},
+    "owner": {"type": "string"},
+    "feature_hash": {"type": "string"}
+  }
+}

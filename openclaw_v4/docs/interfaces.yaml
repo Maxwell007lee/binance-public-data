@@ -1,0 +1,50 @@
+services:
+  research-chain-service:
+    endpoints:
+      - method: POST
+        path: /v1/research-chains
+        request: ResearchChain
+        response: ResearchChain
+      - method: GET
+        path: /v1/research-chains/{research_id}
+        response: ResearchChain
+  mvm-validation-service:
+    endpoints:
+      - method: POST
+        path: /v1/mvm-validations
+        request: ResearchChain
+        response: MVMVerification
+  signal-issuance-service:
+    endpoints:
+      - method: POST
+        path: /v1/signals
+        request: MVMVerification
+        response: SDRSignal
+  risk-execution-service:
+    endpoints:
+      - method: POST
+        path: /v1/risk-decisions
+        request: SDRSignal
+        response: RiskDecision
+  operations-control-service:
+    endpoints:
+      - method: POST
+        path: /v1/ops/holds
+        request: AuditEnvelope
+        response: AuditEnvelope
+  ledger-clearing-service:
+    endpoints:
+      - method: POST
+        path: /v1/ledger/bookings
+        request: AuditEnvelope
+        response: AuditEnvelope
+  audit-traceability-service:
+    endpoints:
+      - method: POST
+        path: /v1/audit/envelopes
+        request: AuditEnvelope
+        response: AuditEnvelope
+      - method: POST
+        path: /v1/audit/replay
+        request: AuditEnvelope
+        response: AuditEnvelope

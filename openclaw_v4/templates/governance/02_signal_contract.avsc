@@ -1,0 +1,17 @@
+{
+  "type": "record",
+  "name": "TradingSignal",
+  "namespace": "openclaw.contracts",
+  "fields": [
+    {"name": "signal_id", "type": "string"},
+    {"name": "confidence", "type": "double", "doc": "<0.6 被拦截"},
+    {"name": "model_run_id", "type": "string", "doc": "MLflow run_id"},
+    {"name": "feature_hash", "type": "string", "doc": "Feast / DVC hash"},
+    {"name": "hypothesis_id", "type": "string", "doc": "R-01 UUID"},
+    {"name": "mvm_approval_id", "type": "string", "doc": "MVM 硬依赖"},
+    {"name": "atlas_lineage_id", "type": "string", "doc": "Atlas 血缘"},
+    {"name": "compliance_checked", "type": "boolean"},
+    {"name": "signal_version", "type": "string", "doc": "SDR 审批编号"},
+    {"name": "created_at", "type": "string"}
+  ]
+}
