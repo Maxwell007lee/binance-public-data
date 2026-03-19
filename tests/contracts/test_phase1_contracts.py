@@ -17,6 +17,16 @@ from openclaw_v4.schemas.core import (
 
 
 class Phase1ContractTests(unittest.TestCase):
+
+    def test_ai_task_pack_bundle_exists(self):
+        task_pack_dir = Path('openclaw_v4/task_packs')
+        task_packs = sorted(p.name for p in task_pack_dir.glob('[0-9][0-9]_*.md'))
+        self.assertEqual(len(task_packs), 10)
+        self.assertEqual(task_packs[0], '01_control_plane_foundation.md')
+        self.assertEqual(task_packs[-1], '10_ci_cd_and_release_governance.md')
+        self.assertTrue(Path('openclaw_v4/templates/repository_template.md').exists())
+        self.assertTrue(Path('openclaw_v4/templates/master_controller_template.md').exists())
+
     def test_required_artifacts_exist(self):
         required = [
             Path('openclaw_v4/state_machines/system_flow.yaml'),

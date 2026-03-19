@@ -130,3 +130,11 @@ See:
 - `openclaw_v4/docs/test_matrix.md`
 - `openclaw_v4/docs/cicd.md`
 - `openclaw_v4/state_machines/system_flow.yaml`
+
+
+### AI Execution Bundle
+
+For direct Claude / ChatGPT Codex execution assets, see:
+- `openclaw_v4/task_packs/README.md`
+- `openclaw_v4/templates/repository_template.md`
+- `openclaw_v4/templates/master_controller_template.md`
