@@ -112,3 +112,21 @@ Please open an issue [here](https://github.com/binance/binance-public-data/issue
 
 ## Licence
 MIT
+
+
+## OpenClaw V4.0 Phase-1 Production Skeleton
+
+This repository now also contains a **phase-1 production skeleton** for a control-plane-first financial engineering workflow under `openclaw_v4/`.
+
+Key properties:
+- strict processing order: research chain -> MVM independent validation -> signal issuance -> risk execution -> operations control -> ledger clearing -> audit traceability
+- explicit schemas with no implicit fields
+- default reject policy with mandatory hard gates: `mvm_approval_id`, `sdr_id`, `RiskDecision`
+- replayable evidence packs for every state transition
+- contract tests before implementation
+
+See:
+- `openclaw_v4/docs/services.md`
+- `openclaw_v4/docs/test_matrix.md`
+- `openclaw_v4/docs/cicd.md`
+- `openclaw_v4/state_machines/system_flow.yaml`
