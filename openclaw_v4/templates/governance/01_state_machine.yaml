@@ -1,0 +1,95 @@
+version: "4.0"
+storage:
+  db: postgresql
+  hash_chain: true
+  immutable: true
+
+states:
+  S0_HYPOTHESIS:
+    description: "假说生成"
+    required_evidence: ["hypothesis_id"]
+    allowed_next: ["S1_FACTOR"]
+    reject_to: "SR_REJECTED"
+
+  S1_FACTOR:
+    description: "因子开发"
+    required_evidence: ["factor_spec_id", "feast_feature_hash"]
+    allowed_next: ["S2_CAUSAL"]
+    reject_to: "SR_REJECTED"
+
+  S2_CAUSAL:
+    description: "因果验证"
+    required_evidence: ["causal_report_id"]
+    allowed_next: ["S3_MODEL"]
+    reject_to: "SR_REJECTED"
+
+  S3_MODEL:
+    description: "模型训练"
+    required_evidence: ["mlflow_run_id", "dvc_data_hash", "cpcv_leak"]
+    guards:
+      - "cpcv_leak == false"
+    allowed_next: ["S4_MVM_APPROVED"]
+    reject_to: "SR_REJECTED"
+
+  S4_MVM_APPROVED:
+    description: "MVM 独立验证通过"
+    required_evidence: ["mvm_approval_id", "repro_deviation"]
+    guards:
+      - "mvm_approval_id is not null"
+      - "repro_deviation < 1.0"
+    allowed_next: ["S5_BACKTEST"]
+    reject_to: "SR_REJECTED"
+
+  S5_BACKTEST:
+    description: "回测"
+    required_evidence: ["backtest_report_id"]
+    allowed_next: ["S6_STRESS"]
+    reject_to: "SR_REJECTED"
+
+  S6_STRESS:
+    description: "压力测试"
+    required_evidence: ["stress_report_id", "stress_scenarios"]
+    guards:
+      - "stress_scenarios >= 20"
+    allowed_next: ["S7_PAPER"]
+    reject_to: "SR_REJECTED"
+
+  S7_PAPER:
+    description: "纸交易监督"
+    required_evidence: ["paper_trading_report_id", "paper_weeks"]
+    guards:
+      - "paper_weeks >= 8"
+    allowed_next: ["S8_SDR_APPROVED"]
+    reject_to: "SR_REJECTED"
+
+  S8_SDR_APPROVED:
+    description: "SDR 三方联署"
+    required_evidence: ["sdr_id", "cro_sign", "cio_sign", "cto_sign"]
+    guards:
+      - "cro_sign is not null"
+      - "cio_sign is not null"
+      - "cto_sign is not null"
+    allowed_next: ["S9_LIVE_PILOT"]
+    reject_to: "SR_REJECTED"
+
+  S9_LIVE_PILOT:
+    description: "实盘试运行"
+    required_evidence: ["live_start_at", "pilot_pct"]
+    guards:
+      - "pilot_pct == 0.25"
+    allowed_next: ["S10_LIVE_FULL"]
+    reject_to: "SR_REJECTED"
+
+  S10_LIVE_FULL:
+    description: "全量运行"
+    required_evidence: ["live_full_at", "full_pct"]
+    guards:
+      - "full_pct == 1.0"
+    allowed_next: []
+    reject_to: "SR_REJECTED"
+
+  SR_REJECTED:
+    description: "拒绝态"
+    required_evidence: ["rejection_reason", "failed_gate"]
+    allowed_next: []
+    reject_to: null

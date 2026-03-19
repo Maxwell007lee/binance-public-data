@@ -1,40 +1,19 @@
-# OpenClaw V4.0 Master Controller Template
+# OpenClaw V4.0 主控文件总说明
 
-## System Identity
-- Program: OpenClaw V4.0
-- Phase: Phase 1 Skeleton
-- Objective: Build an auditable, reproducible, replayable, gate-controlled production skeleton.
+本目录提供 8 份主控治理模板，供 Claude / ChatGPT Codex 先搭制度骨架，再做业务实现。
 
-## Global Non-Negotiables
-1. Strict dataflow only:
-   - research_chain
-   - mvm_independent_validation
-   - signal_issuance
-   - risk_execution
-   - operations_control
-   - ledger_clearing
-   - audit_traceability
-2. Control plane first, business plane second.
-3. Explicit IO contracts only; no implicit fields.
-4. Never bypass `mvm_approval_id`, `sdr_id`, `RiskDecision`.
-5. Default reject.
-6. Contract tests before implementation.
-7. Every state transition emits an evidence pack and replay pointer.
-8. Phase 1 excludes strategy logic.
+## 模板列表
+1. `governance/01_state_machine.yaml`
+2. `governance/02_signal_contract.avsc`
+3. `governance/03_risk_decision_contract.avsc`
+4. `governance/04_feature_spec_contract.json`
+5. `governance/05_invariants.md`
+6. `governance/06_acceptance_gates.md`
+7. `governance/07_test_matrix.csv`
+8. `governance/08_repo_policy.md`
 
-## Execution Protocol For Claude / ChatGPT Codex
-- Step 1: Read repository template.
-- Step 2: Execute task packs in numeric order.
-- Step 3: Do not start the next pack until the previous pack's acceptance criteria are met.
-- Step 4: For every changed contract, update tests first.
-- Step 5: For every state change, update audit/replay artifacts.
-
-## Required Final Output
-- repository structure
-- service list
-- interface definitions
-- state machine definition
-- core schemas
-- test matrix
-- CI/CD rules
-- status summary of completed task packs
+## 执行纪律
+- 先治理，后业务。
+- 先 contract tests，后实现。
+- 默认拒绝，禁止默认放行。
+- 禁止任何单一 AI 会话同时拥有：写主仓代码、修改验收标准、签发批准结论三种权力。

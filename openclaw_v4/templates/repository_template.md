@@ -1,51 +1,14 @@
-# OpenClaw V4.0 Repository Directory Template
+# OpenClaw V4.0 四仓目录模板
 
-```text
-repo-root/
-  .github/
-    workflows/
-      phase1-ci.yml
-  openclaw_v4/
-    api/
-      app.py
-      routes.py
-    business_plane/
-      __init__.py
-    control_plane/
-      __init__.py
-      gates.py
-      invariants.py
-      state_machine.py
-    docs/
-      cicd.md
-      interfaces.yaml
-      services.md
-      test_matrix.md
-    schemas/
-      __init__.py
-      core.py
-    services/
-      __init__.py
-    state_machines/
-      system_flow.yaml
-    task_packs/
-      README.md
-      01_control_plane_foundation.md
-      02_state_machine_and_gates.md
-      03_research_chain_service.md
-      04_mvm_validation_service.md
-      05_signal_issuance_service.md
-      06_risk_execution_service.md
-      07_operations_control_service.md
-      08_ledger_clearing_service.md
-      09_audit_traceability_service.md
-      10_ci_cd_and_release_governance.md
-    templates/
-      repository_template.md
-      master_controller_template.md
-  tests/
-    contracts/
-      test_phase1_contracts.py
-  requirements-phase1.txt
-  README.md
-```
+推荐采用四仓隔离结构，以满足 Builder / Validator / Red Team / Infra 的职责隔离：
+
+1. `openclaw-core/`
+2. `openclaw-validator/`
+3. `openclaw-redteam/`
+4. `openclaw-infra/`
+
+详见：
+- `openclaw_v4/templates/repos/openclaw-core.md`
+- `openclaw_v4/templates/repos/openclaw-validator.md`
+- `openclaw_v4/templates/repos/openclaw-redteam.md`
+- `openclaw_v4/templates/repos/openclaw-infra.md`

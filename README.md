@@ -138,3 +138,10 @@ For direct Claude / ChatGPT Codex execution assets, see:
 - `openclaw_v4/task_packs/README.md`
 - `openclaw_v4/templates/repository_template.md`
 - `openclaw_v4/templates/master_controller_template.md`
+
+- `openclaw_v4/templates/governance/`
+- `openclaw_v4/templates/repos/`
+
+执行纪律：
+- 使用 Builder / Validator / Red Team 三个隔离 AI 会话
+- 不允许同一会话同时写主仓代码、修改验收标准、签发批准结论

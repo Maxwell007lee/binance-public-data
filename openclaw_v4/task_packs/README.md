@@ -1,21 +1,26 @@
-# OpenClaw V4.0 AI Task Packs
+# OpenClaw V4.0 AI Execution Playbook
 
-These task packs are written so Claude / ChatGPT Codex can copy them directly into an execution session.
+## 执行口径
+不要把全部任务丢进一个 AI 会话。
+必须并行使用 3 个隔离会话：
 
-## Execution Order
-1. `01_control_plane_foundation.md`
-2. `02_state_machine_and_gates.md`
-3. `03_research_chain_service.md`
-4. `04_mvm_validation_service.md`
-5. `05_signal_issuance_service.md`
-6. `06_risk_execution_service.md`
-7. `07_operations_control_service.md`
-8. `08_ledger_clearing_service.md`
-9. `09_audit_traceability_service.md`
-10. `10_ci_cd_and_release_governance.md`
+1. **会话 A / Builder**
+   - 只写主仓代码、状态机、契约、接口、单元测试。
+2. **会话 B / Validator**
+   - 只做独立复现、压力测试、泄漏检测、批准/否决。
+3. **会话 C / Red Team**
+   - 只做绕过测试、伪信号注入、权限边界、网络分区、审计篡改测试。
 
-## Usage Rule
-- Execute the packs strictly in order.
-- Do not invent strategy logic in phase 1.
-- Default reject unless the required gate is explicitly satisfied.
-- Every state change must emit an evidence pack and be replayable.
+## 原因
+- `RC-02` 被定义为隔离环境中的第二意见硬门槛。
+- `RC-01 + E-03` 必须做到四层不可绕过。
+- 若同一 AI 会话同时开发、验收、批准，将破坏制度隔离。
+
+## 使用顺序
+1. 先阅读 `openclaw_v4/templates/governance/` 下的 8 份主控文件模板。
+2. 再按 `01` 到 `10` 顺序执行任务包。
+3. Builder / Validator / Red Team 三个会话各自只执行权限范围内任务。
+4. 任何阶段不得同时拥有：
+   - 写主仓代码
+   - 修改验收标准
+   - 签发批准结论
