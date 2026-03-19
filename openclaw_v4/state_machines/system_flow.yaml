@@ -1,0 +1,27 @@
+{
+  "workflow_name": "openclaw_v4_phase1",
+  "sequence": [
+    "research_chain",
+    "mvm_independent_validation",
+    "signal_issuance",
+    "risk_execution",
+    "operations_control",
+    "ledger_clearing",
+    "audit_traceability"
+  ],
+  "transitions": {
+    "research_chain": ["mvm_independent_validation"],
+    "mvm_independent_validation": ["signal_issuance"],
+    "signal_issuance": ["risk_execution"],
+    "risk_execution": ["operations_control"],
+    "operations_control": ["ledger_clearing"],
+    "ledger_clearing": ["audit_traceability"],
+    "audit_traceability": []
+  },
+  "required_gates": ["mvm_approval_id", "sdr_id", "RiskDecision"],
+  "policy": {
+    "default_decision": "reject",
+    "evidence_pack_required": true,
+    "replay_required": true
+  }
+}

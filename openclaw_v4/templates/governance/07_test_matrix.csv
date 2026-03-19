@@ -1,0 +1,11 @@
+test_id,module,priority,frequency,input,expected_output,failed_gate
+RT-11,RC-01/E-03,P0,monthly,RC-01 down,E-03 reject 100%,Gate1
+RT-12,RC-01/E-03,P0,monthly,Kafka lag > 10000,gRPC fallback active,Gate1
+RT-13,S-01/RC-01,P0,monthly,forged signal injection,reject 100%,Gate0
+RT-14,TRE-01,P1,quarterly,CVA precision check,within threshold,Gate1
+RT-15,TRE-01,P1,quarterly,CVA auditability check,trace complete,Gate1
+MA-01,ORC-01,P1,monthly,route request,correct routing >99.9%,Gate0
+MA-07,ORC-02,P1,monthly,memory retrieval,purity threshold met,Gate2
+SEC-13,infra,P0,monthly,repo isolation check,pass,Gate3
+SEC-14,infra,P0,monthly,branch protection check,pass,Gate3
+PAPER-01,OP-01,P0,once,8-week paper trading,pass,Gate4

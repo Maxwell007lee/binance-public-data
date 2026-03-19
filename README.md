@@ -112,3 +112,36 @@ Please open an issue [here](https://github.com/binance/binance-public-data/issue
 
 ## Licence
 MIT
+
+
+## OpenClaw V4.0 Phase-1 Production Skeleton
+
+This repository now also contains a **phase-1 production skeleton** for a control-plane-first financial engineering workflow under `openclaw_v4/`.
+
+Key properties:
+- strict processing order: research chain -> MVM independent validation -> signal issuance -> risk execution -> operations control -> ledger clearing -> audit traceability
+- explicit schemas with no implicit fields
+- default reject policy with mandatory hard gates: `mvm_approval_id`, `sdr_id`, `RiskDecision`
+- replayable evidence packs for every state transition
+- contract tests before implementation
+
+See:
+- `openclaw_v4/docs/services.md`
+- `openclaw_v4/docs/test_matrix.md`
+- `openclaw_v4/docs/cicd.md`
+- `openclaw_v4/state_machines/system_flow.yaml`
+
+
+### AI Execution Bundle
+
+For direct Claude / ChatGPT Codex execution assets, see:
+- `openclaw_v4/task_packs/README.md`
+- `openclaw_v4/templates/repository_template.md`
+- `openclaw_v4/templates/master_controller_template.md`
+
+- `openclaw_v4/templates/governance/`
+- `openclaw_v4/templates/repos/`
+
+执行纪律：
+- 使用 Builder / Validator / Red Team 三个隔离 AI 会话
+- 不允许同一会话同时写主仓代码、修改验收标准、签发批准结论
